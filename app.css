@@ -5,4 +5,10 @@ body {
     @apply bg-gray-800;
 }
 
+.sprite {
+    @apply flex absolute bg-top bg-no-repeat;
+    width: 64px;
+    height: 64px;
+}
+
 @tailwind utilities;

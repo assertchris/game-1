@@ -22,19 +22,13 @@ const App = () => {
     }, [])
 
     const onChestAnimationComplete = useCallback(() => {
-        console.log('chest animation complete')
-
         if (chestStatus === Chest1.Status.Open) {
-            console.log('make sword bigger')
             setTimeout(() => setSwordStatus(Sword1.Status.Large), 250)
         }
     }, [chestStatus])
 
     const onSwordAnimationComplete = useCallback(() => {
-        console.log('sword animation complete')
-
         if (swordStatus === Sword1.Status.Small) {
-            console.log('make chest closed')
             setTimeout(() => setChestStatus(Chest1.Status.Closed), 150)
         }
     }, [swordStatus])

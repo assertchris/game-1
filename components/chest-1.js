@@ -3,7 +3,7 @@ import { Animator } from './animator'
 
 import backgroundImage from '../sprites/chest-1.png'
 
-export const Chest1 = ({ status = 'closed', onComplete = () => {}, style = {} }) => {
+export const Chest1 = ({ status = Chest1.Status.Closed, onComplete = () => {}, style = {} }) => {
     if (status === Chest1.Status.Hidden) {
         return null
     }
@@ -13,7 +13,7 @@ export const Chest1 = ({ status = 'closed', onComplete = () => {}, style = {} })
         shouldPlayInReverse: false,
     })
 
-    const previousStatus = useRef('closed')
+    const previousStatus = useRef(Chest1.Status.Closed)
 
     useEffect(() => {
         let shouldPlay = state.shouldPlay

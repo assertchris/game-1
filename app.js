@@ -4,7 +4,7 @@ import { Chest1, Sword1 } from './components'
 
 const App = () => {
     const [chestStatus, setChestStatus] = useState(Chest1.Status.Closed)
-    const [swordStatus, setSwordStatus] = useState(Sword1.Status.Hidden)
+    const [swordStatus, setSwordStatus] = useState(Sword1.Status.Small)
 
     const listener = e => {
         if (e.key === 'o') {
@@ -22,24 +22,22 @@ const App = () => {
     }, [])
 
     const onChestAnimationComplete = useCallback(() => {
+        console.log('chest animation complete')
+
         if (chestStatus === Chest1.Status.Open) {
-            setSwordStatus(Sword1.Status.Small)
-            setTimeout(() => setSwordStatus(Sword1.Status.Large), 1)
+            console.log('make sword bigger')
+            setTimeout(() => setSwordStatus(Sword1.Status.Large), 250)
         }
     }, [chestStatus])
 
-    let timer = undefined
-
     const onSwordAnimationComplete = useCallback(() => {
-        if (chestStatus === Chest1.Status.Open && swordStatus === Sword1.Status.Small) {
-            clearTimeout(timer)
+        console.log('sword animation complete')
 
-            setTimeout(() => {
-                setSwordStatus(Sword1.Status.Hidden)
-                setTimeout(() => setChestStatus(Chest1.Status.Closed), 250)
-            }, 250)
+        if (swordStatus === Sword1.Status.Small) {
+            console.log('make chest closed')
+            setTimeout(() => setChestStatus(Chest1.Status.Closed), 150)
         }
-    }, [chestStatus, swordStatus])
+    }, [swordStatus])
 
     return (
         <div className="absolute inset-0">

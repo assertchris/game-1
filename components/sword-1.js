@@ -3,7 +3,7 @@ import { Animator } from './animator'
 
 import backgroundImage from '../sprites/sword-1.png'
 
-export const Sword1 = ({ status = 'closed', onComplete = () => {}, style = {} }) => {
+export const Sword1 = ({ status = Sword1.Status.Small, onComplete = () => {}, style = {} }) => {
     if (status === Sword1.Status.Hidden) {
         return null
     }
@@ -13,7 +13,7 @@ export const Sword1 = ({ status = 'closed', onComplete = () => {}, style = {} })
         shouldPlayInReverse: false,
     })
 
-    const previousStatus = useRef('closed')
+    const previousStatus = useRef(Sword1.Status.Small)
 
     useEffect(() => {
         let shouldPlay = state.shouldPlay
@@ -48,7 +48,7 @@ export const Sword1 = ({ status = 'closed', onComplete = () => {}, style = {} })
             shouldPlay={state.shouldPlay}
             shouldPlayInReverse={state.shouldPlayInReverse}
             onComplete={onComplete}
-            width={11 * 64}
+            width={12 * 64}
         >
             {offset => (
                 <div
